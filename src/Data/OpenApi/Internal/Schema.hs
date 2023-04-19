@@ -1011,8 +1011,8 @@ withFieldSchema opts _ isRequiredField schema = do
                     then id
                     else \case
                       ref@(Ref _) -> Inline $ mempty & anyOf ?~ [ ref
-                                                                , Inline $ mempty & nullable ?~ True
-                                                                                  & type_ ?~ OpenApiObject
+                                                                , Inline $ mempty 
+                                                                                  & type_ ?~ OpenApiNull
                                                                 ]
                       Inline s -> Inline $ s & nullable ?~ True
   ref <- setNullable <$> gdeclareSchemaRef opts (Proxy :: Proxy f)
